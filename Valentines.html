@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine? 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f0 50%, #ffe8f1 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.25;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .heart-1 { top: 20%; right: 15%; animation-delay: 0s; }
+        .heart-2 { bottom: 25%; left: 12%; animation-delay: 1.5s; }
+        .heart-3 { top: 50%; right: 5%; animation-delay: 3s; }
+        .heart-4 { bottom: 40%; right: 20%; animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 60px 50px;
+            border-radius: 35px;
+            box-shadow: 
+                0 25px 60px rgba(255, 107, 157, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+            max-width: 650px;
+            width: 100%;
+            animation: slideUp 0.9s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ff6b9d;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #c44569;
+            font-size: 58px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .divider-top {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+            margin: 20px 0 25px 0;
+        }
+
+        .hearts-display {
+            font-size: 32px;
+            margin: 25px 0 30px 0;
+            letter-spacing: 18px;
+            animation: heartbeat 1.4s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.12); }
+            50% { transform: scale(1); }
+        }
+
+        .message-container {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.06) 0%, rgba(255, 182, 193, 0.08) 100%);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 157, 0.15);
+            margin: 30px 0;
+        }
+
+        .message {
+            color: #444;
+            font-size: 17px;
+            line-height: 1.9;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .message strong {
+            color: #c44569;
+            font-weight: 700;
+        }
+
+        .message em {
+            color: #ff6b9d;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .message p {
+            margin: 15px 0;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 35px 0;
+        }
+
+        .feature {
+            background: linear-gradient(135deg, #fff5f8 0%, #ffe8f1 100%);
+            padding: 25px 20px;
+            border-radius: 18px;
+            border: 2px solid rgba(255, 107, 157, 0.2);
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: default;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.2);
+            border-color: rgba(255, 107, 157, 0.4);
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe0eb 100%);
+        }
+
+        .feature-emoji {
+            font-size: 40px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-text {
+            color: #666;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .divider-bottom {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+            margin: 35px 0;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 45px;
+        }
+
+        button {
+            padding: 16px 45px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .yes-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            min-width: 150px;
+        }
+
+        .yes-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .yes-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .no-btn {
+            background: linear-gradient(135deg, #f0e0eb 0%, #e8d5e5 100%);
+            color: #666;
+            position: fixed;
+            border: 2px solid rgba(255, 107, 157, 0.25);
+            z-index: 1000;
+            min-width: 100px;
+        }
+
+        .no-btn:hover {
+            background: linear-gradient(135deg, #e8d0e0 0%, #ddc5d8 100%);
+            color: #555;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            margin-top: 35px;
+            animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .success-hearts {
+            font-size: 48px;
+            margin-bottom: 15px;
+            letter-spacing: 15px;
+            animation: bounce 0.8s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-text {
+            font-size: 26px;
+            color: #c44569;
+            font-weight: 700;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 12px;
+        }
+
+        .success-subtext {
+            font-size: 16px;
+            color: #ff6b9d;
+            font-weight: 500;
+        }
+
+        @keyframes popIn {
+            0% { 
+                transform: scale(0) rotate(-15deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: scale(1.15);
+            }
+            100% { 
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .confetti {
+            position: absolute;
+            pointer-events: none;
+            font-size: 32px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 45px 35px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .message {
+                font-size: 16px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                padding: 14px 35px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .container {
+                padding: 35px 25px;
+                border-radius: 25px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            .hearts-display {
+                font-size: 28px;
+                letter-spacing: 12px;
+            }
+
+            .message {
+                font-size: 15px;
+            }
+
+            .button-container {
+                margin-top: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="floating-heart heart-1">❤️</div>
+        <div class="floating-heart heart-2">💕</div>
+        <div class="floating-heart heart-3">💗</div>
+        <div class="floating-heart heart-4">💓</div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="header">
+                <div class="subtitle">💌 A Special Question 💌</div>
+                <h1>Be My Valentine?</h1>
+            </div>
+            
+            <div class="divider-top"></div>
+            <div class="hearts-display">❤️ 💕 ❤️</div>
+
+            <div class="message-container">
+                <div class="message">
+                    <p>You've brought so much joy and love into my life. 💫</p>
+                    <p>Every moment with you feels like a beautiful dream, and I never want it to end.</p>
+                    <p><strong>You mean everything to me.</strong></p>
+                    <p>This Valentine's Day, I want to celebrate <em>you</em> — the amazing person who makes my heart smile.</p>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <span class="feature-emoji">😊</span>
+                    <div class="feature-text">Your Smile</div>
+                </div>
+                <div class="feature">
+                    <span class="feature-emoji">💭</span>
+                    <div class="feature-text">Your Mind</div>
+                </div>
+                <div class="feature">
+                    <span class="feature-emoji">🌟</span>
+                    <div class="feature-text">Your Spirit</div>
+                </div>
+                <div class="feature">
+                    <span class="feature-emoji">❤️</span>
+                    <div class="feature-text">Your Love</div>
+                </div>
+            </div>
+
+            <div class="divider-bottom"></div>
+
+            <div class="button-container">
+                <button class="yes-btn" onclick="celebrateYes()">YES 💕</button>
+                <button class="no-btn" onclick="moveButton()">NO</button>
+            </div>
+
+            <div class="success-message" id="successMsg">
+                <div class="success-hearts">❤️ 💕 ❤️</div>
+                <div class="success-text">You've Made Me The Happiest! 🎉</div>
+                <div class="success-subtext">Fala ti jana shto si vo mojot zivot i mojot zivot💕</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        const noBtn = document.querySelector('.no-btn');
+        let isMoving = true;
+        let moveInterval;
+
+        function getRandomPosition() {
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 50;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            return { x: randomX, y: randomY };
+        }
+
+                function moveButtonRandomly() {
+            if (!isMoving) return;
+            
+            const pos = getRandomPosition();
+            noBtn.style.left = pos.x + 'px';
+            noBtn.style.top = pos.y + 'px';
+        }
+
+        function moveButton() {
+            moveButtonRandomly();
+        }
+
+        function celebrateYes() {
+            isMoving = false;
+            if (moveInterval) clearInterval(moveInterval);
+            
+            noBtn.style.display = 'none';
+            document.querySelector('.button-container').classList.add('hidden');
+            document.getElementById('successMsg').style.display = 'block';
+            createConfetti();
+        }
+
+        function createConfetti() {
+            const celebration = document.getElementById('celebration');
+            celebration.style.display = 'block';
+            const confettiPieces = ['❤️', '💕', '🎉', '✨', '💗'];
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.fontSize = Math.random() * 20 + 20 + 'px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                celebration.appendChild(confetti);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    to {
+                        transform: translateY(100vh) rotate(360deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Start moving NO button immediately
+        moveInterval = setInterval(moveButtonRandomly, 400);
+    </script>
+</body>
+</html>
+
